@@ -3,7 +3,7 @@ import { Autocomplete } from '@react-google-maps/api';
 import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './header.styles';
-
+import https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"
 
 const Header = ({ setCoordinates }) => {
   const classes = useStyles();
@@ -36,7 +36,7 @@ const Header = ({ setCoordinates }) => {
 	</div>
 
 	
-	<script>
+		{
 		$( ".change" ).on("click", function() {
 			if( $( "body" ).hasClass( "dark" )) {
 				$( "body" ).removeClass( "dark" );
@@ -46,7 +46,7 @@ const Header = ({ setCoordinates }) => {
 				$( ".change" ).text( "ON" );
 			}
 		});
-	</script>
+		}
 
         </Box>
       </Toolbar>
