@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Fragment, useEffect, useState } from 'react';
 
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid, Button, Switch } from '@material-ui/core';
 
 import Header from './components/Header/header.component';
 import List from './components/List/list.component';
@@ -22,6 +22,21 @@ function App() {
 
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
+
+  // Step 1: Dark Mode State
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Step 2: Define Dark Mode Styles
+  const darkModeStyles = {
+    backgroundColor: '#000',
+    color: '#fff',
+    // Add other dark mode styles here
+  };
+
+  // Step 3: Toggle Dark Mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -59,6 +74,12 @@ function App() {
     <Fragment>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
+
+      {/* Step 4: Dark Mode Button */}
+      <Button onClick={toggleDarkMode}>
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </Button>
+
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -69,6 +90,9 @@ function App() {
             setType={setType}
             rating={rating}
             setRating={setRating}
+            
+            // Step 4: Apply Dark Mode Styles
+            style={isDarkMode ? darkModeStyles : {}}
           />
         </Grid>
         <Grid item xs={12} md={8}>
@@ -79,6 +103,9 @@ function App() {
             places={filteredPlaces.length ? filteredPlaces : places}
             setChildClicked={setChildClicked}
             weatherData={weatherData}
+            
+            // Step 4: Apply Dark Mode Styles
+            style={isDarkMode ? darkModeStyles : {}}
           />
         </Grid>
       </Grid>
