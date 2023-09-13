@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './header.styles';
 
+
 const Header = ({ setCoordinates }) => {
   const classes = useStyles();
 
@@ -29,17 +30,24 @@ const Header = ({ setCoordinates }) => {
           <Typography variant='h6' className={classes.title}>
             Explore new places
           </Typography>
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder='Search...'
-                classes={{ root: classes.inputRoot, input: classes.inputInput }}
-              />
-            </div>
-          </Autocomplete>
+          	<div class="mode">
+		Dark mode:			
+		<span class="change">OFF</span>
+	</div>
+
+	
+	<script>
+		$( ".change" ).on("click", function() {
+			if( $( "body" ).hasClass( "dark" )) {
+				$( "body" ).removeClass( "dark" );
+				$( ".change" ).text( "OFF" );
+			} else {
+				$( "body" ).addClass( "dark" );
+				$( ".change" ).text( "ON" );
+			}
+		});
+	</script>
+
         </Box>
       </Toolbar>
     </AppBar>
