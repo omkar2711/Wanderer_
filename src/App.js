@@ -6,7 +6,6 @@ import { CssBaseline, Grid } from '@material-ui/core';
 import Header from './components/Header/header.component';
 import List from './components/List/list.component';
 import Map from './components/Map/map.component';
-import darkMode from './darkmode.js';
 
 import { getPlacesData, getWeatherData } from './services';
 
@@ -84,7 +83,6 @@ function App() {
         </Grid>
       </Grid>
     </Fragment>
-              <darkMode />
   );
 }
 
