@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Fragment, useEffect, useState } from 'react';
 
-import { CssBaseline, Grid, Switch } from '@material-ui/core';
+import { CssBaseline, Grid } from '@material-ui/core';
 
 import Header from './components/Header/header.component';
 import List from './components/List/list.component';
@@ -22,9 +22,6 @@ function App() {
 
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
-
-  // Step 1: Dark Mode State
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -50,31 +47,18 @@ function App() {
         setIsLoading(false);
       });
     }
-  }, [type, bounds, coordinates.lat, coordinates.lng]);
+  }, [type, bounds]);
 
   useEffect(() => {
     const filteredPlaces = places?.filter((place) => place.rating > rating);
 
     setFilteredPlaces(filteredPlaces);
-  }, [rating, places]);
+  }, [rating]);
 
   return (
     <Fragment>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
-
-      {/* Step 2: Dark Mode Switch */}
-      <Grid container justify="flex-end">
-        <Grid item>
-          <Switch
-            checked={isDarkMode}
-            onChange={() => setIsDarkMode(!isDarkMode)}
-            color="primary"
-          />
-          {isDarkMode ? 'Dark Mode' : 'Light Mode'}
-        </Grid>
-      </Grid>
-
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -85,7 +69,6 @@ function App() {
             setType={setType}
             rating={rating}
             setRating={setRating}
-            className={isDarkMode ? 'dark-mode' : 'light-mode'} // Step 3: Apply Dark Mode Styles
           />
         </Grid>
         <Grid item xs={12} md={8}>
@@ -96,7 +79,6 @@ function App() {
             places={filteredPlaces.length ? filteredPlaces : places}
             setChildClicked={setChildClicked}
             weatherData={weatherData}
-            className={isDarkMode ? 'dark-mode' : 'light-mode'} // Step 3: Apply Dark Mode Styles
           />
         </Grid>
       </Grid>
