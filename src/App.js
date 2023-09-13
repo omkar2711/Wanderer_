@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Fragment, useEffect, useState } from 'react';
 
-import { CssBaseline, Grid, Button, Switch } from '@material-ui/core';
+import { CssBaseline, Grid, Button } from '@material-ui/core';
 
 import Header from './components/Header/header.component';
 import List from './components/List/list.component';
@@ -31,11 +31,46 @@ function App() {
     backgroundColor: '#000',
     color: '#fff',
     // Add other dark mode styles here
+    	body{
+		padding:10% 3% 10% 3%;
+		text-align:center;
+		}
+		img{
+			height:140px;
+				width:140px;
+		}
+		h1{
+		color: #32a852;
+		}
+		.mode {
+			float:right;
+		}
+		.change {
+			cursor: pointer;
+			border: 1px solid #555;
+			border-radius: 40%;
+			width: 20px;
+			text-align: center;
+			padding: 5px;
+			margin-left: 8px;
+		}
+		.dark{
+			background-color: #222;
+			color: #e6e6e6;
+		}
   };
 
   // Step 3: Toggle Dark Mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+
+    // Step 4: Toggle "dark" class on body element
+    const body = document.body;
+    if (body.classList.contains('dark')) {
+      body.classList.remove('dark');
+    } else {
+      body.classList.add('dark');
+    }
   };
 
   useEffect(() => {
